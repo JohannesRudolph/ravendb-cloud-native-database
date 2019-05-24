@@ -1,0 +1,17 @@
+version: "3"
+networks:
+  backend:
+services:
+  raven:
+    image: ravendb/ravendb:4.2.0-ubuntu.18.04-x64
+    networks:
+      - backend
+    environment:
+      - RAVEN_ARGS=--Setup.Mode=None --log-to-console
+      - RAVEN_Security_UnsecuredAccessAllowed=PrivateNetwork
+      - RAVEN_Features_Availability=Experimental
+      - RAVEN_Logs_Mode=Operations
+      - RAVEN_License_Eula_Accepted=true
+    ports:
+      - "8080:8080" 
+      - "38888:38888"
